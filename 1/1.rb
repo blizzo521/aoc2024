@@ -21,14 +21,19 @@ list = process_input('1-input.txt', list)
 
 puts "list after parse #{list[0].length}"
 
-delta = 0
+cumulative_similarty_score = 0
 
 list[0].each_index do |i|
   location_1 = list[0][i]
-  location_2 = list[1][i]
-  location_diff = (location_1 - location_2).abs
-  delta += location_diff
-  # puts "diff between #{location_1} and #{location_2} is #{location_diff}. New delta is #{delta}"
+
+  # get the copunt
+  number_of_occurrences = list[1].count(location_1)
+
+  similarity_score = location_1 * number_of_occurrences
+
+  cumulative_similarty_score += similarity_score
+  puts "list 1, value #{location_1} appears #{number_of_occurrences} times in list 2. similarity score is #{similarity_score}. running score is now #{cumulative_similarty_score}"
+
 end
 
-puts "final delta is #{delta}"
+puts "final similarity score is #{cumulative_similarty_score}"
